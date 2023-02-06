@@ -82,6 +82,8 @@ public class ChatController {
     @GetMapping("/load/{channelId}")
     public List<GetChatHistoryResponse> getChatHistory(@PathVariable String channelId){
 
+        System.out.println("get chat history");
+
         List<GetChatHistoryResponse> chatHistory = chatService.getChatHistory(channelId);
 
         return chatHistory;
