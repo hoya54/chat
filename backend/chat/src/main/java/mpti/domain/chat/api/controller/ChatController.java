@@ -7,10 +7,7 @@ import mpti.domain.chat.api.response.GetChannelIdResponse;
 import mpti.domain.chat.api.response.GetChatHistoryResponse;
 import mpti.domain.chat.api.response.GetChatListResponse;
 import mpti.domain.chat.application.ChatService;
-//import mpti.domain.chat.dto.MessageDto;
-//import mpti.domain.chat.dto.RoomListRequest;
 import mpti.domain.chat.entity.Channel;
-import mpti.domain.chat.entity.Message;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -30,7 +27,6 @@ public class ChatController {
 
 //    @MessageMapping("/chat/list")
 //    public void SocketHandler2(RoomListRequest roomListRequest){
-//        System.out.println("채널 리스트 진입");
 //
 //        List<Channel> channelList = chatService.getChannelList(1L);
 //
@@ -38,15 +34,9 @@ public class ChatController {
 //    }
 
 
-    // /receive를 메시지를 받을 endpoint로 설정합니다.
+//    [Message] receive를 메시지를 받을 endpoint로 설정합니다.
     @MessageMapping("/api/chat/receive")
     public void chatHandler(ChatHandlerRequest chatHandlerRequest){
-
-//        chatService.getChannel(msgDto.getUserId(), msgDto.getTrainerId());
-//        List<Channel> channelList = chatService.getChannelList(1L);
-//        simpMessagingTemplate.convertAndSend("/send/roomList", channelList);
-
-        System.out.println(chatHandlerRequest);
 
         ChatHandlerResponse chatHandlerResponse = chatService.saveMessage(chatHandlerRequest);
 
@@ -54,23 +44,12 @@ public class ChatController {
 
     }
 
-
-
-
-
-
-
-
-
-
-
 //    [GET] 현재 본인과 상대방의 아이디를 가지고 채널 아이디를 받아옴(기존에 채널이 없었다면 만들어서 반환)
 
     @GetMapping("/channel/{trainerId}/{userId}")
     public ResponseEntity<Optional<GetChannelIdResponse>> getChannelId(@PathVariable Long trainerId, @PathVariable Long userId){
 
         Channel channel = chatService.getChannel(trainerId, userId);
-        System.out.println(channel.getId());
 
         String channelId = channel.getId();
 
@@ -82,7 +61,6 @@ public class ChatController {
     @GetMapping("/load/{channelId}")
     public List<GetChatHistoryResponse> getChatHistory(@PathVariable String channelId){
 
-        System.out.println("get chat history");
 
         List<GetChatHistoryResponse> chatHistory = chatService.getChatHistory(channelId);
 

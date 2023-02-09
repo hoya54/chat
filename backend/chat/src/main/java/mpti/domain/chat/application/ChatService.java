@@ -34,8 +34,6 @@ public class ChatService {
 
         Message message = new Message(chatHandlerRequest.getChannelId(), chatHandlerRequest.getWriter(), chatHandlerRequest.getContent());
 
-        System.out.println(message);
-
         Message savedMessage = messageRepository.save(message);
 
         ChatHandlerResponse chatHandlerResponse = new ChatHandlerResponse(savedMessage);
