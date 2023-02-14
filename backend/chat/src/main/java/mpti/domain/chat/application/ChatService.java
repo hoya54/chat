@@ -41,11 +41,11 @@ public class ChatService {
         return chatHandlerResponse;
     }
 
-    public Channel getChannel(Long trainerId, Long userId) {
+    public Channel getChannel(Long trainerId, String trainerName, Long userId, String userName) {
         Optional<Channel> channel = channelRepository.findChannelByTrainerIdAndUserId(trainerId, userId);
 
         if (channel.isEmpty()) {
-            Channel newChannel = new Channel(trainerId, userId);
+            Channel newChannel = new Channel(trainerId, trainerName, userId, userName);
             Channel savedChannel = channelRepository.save(newChannel);
             return savedChannel;
         } else {
@@ -83,9 +83,9 @@ public class ChatService {
             }
             GetChatListResponse getChatListResponse;
             if (role.equals("TRAINER")) {
-                getChatListResponse = new GetChatListResponse(channel.getId(), channel.getUserId(), message.getContent());
+                getChatListResponse = new GetChatListResponse(channel.getId(), channel.getUserId(), channel.getUserName(), message.getContent(), message.getCreatedDate());
             }else{
-                getChatListResponse = new GetChatListResponse(channel.getId(), channel.getTrainerId(), message.getContent());
+                getChatListResponse = new GetChatListResponse(channel.getId(), channel.getTrainerId(), channel.getTrainerName(), message.getContent(), message.getCreatedDate());
             }
             chatList.add(getChatListResponse);
         }

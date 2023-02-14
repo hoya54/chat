@@ -46,10 +46,14 @@ public class ChatController {
 
 //    [GET] 현재 본인과 상대방의 아이디를 가지고 채널 아이디를 받아옴(기존에 채널이 없었다면 만들어서 반환)
 
-    @GetMapping("/channel/{trainerId}/{userId}")
-    public ResponseEntity<Optional<GetChannelIdResponse>> getChannelId(@PathVariable Long trainerId, @PathVariable Long userId){
+    @GetMapping("/channel/{trainerId}/{userId}/{trainerName}/{userName}")
+    public ResponseEntity<Optional<GetChannelIdResponse>> getChannelId(
+            @PathVariable Long trainerId,
+            @PathVariable Long userId,
+            @PathVariable String trainerName,
+            @PathVariable String userName){
 
-        Channel channel = chatService.getChannel(trainerId, userId);
+        Channel channel = chatService.getChannel(trainerId, trainerName, userId, userName);
 
         String channelId = channel.getId();
 

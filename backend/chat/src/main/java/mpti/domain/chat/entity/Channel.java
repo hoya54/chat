@@ -39,11 +39,16 @@ public class Channel {
     private String id;
 
     private Long trainerId;
+    private String trainerName;
+
     private Long userId;
+    private String userName;
 
 
-    public Channel(Long trainerId, Long userId) {
+    public Channel(Long trainerId, String trainerName, Long userId, String userName) {
         this.trainerId = trainerId;
+        this.trainerName = trainerName;
         this.userId = userId;
+        this.userName = userName;
     }
 }
