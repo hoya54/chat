@@ -35,7 +35,7 @@ public class ChatController {
 
 
 //    [Message] receive를 메시지를 받을 endpoint로 설정합니다.
-    @MessageMapping("/receive")
+    @MessageMapping("/api/chat/receive")
     public void chatHandler(ChatHandlerRequest chatHandlerRequest){
 
         ChatHandlerResponse chatHandlerResponse = chatService.saveMessage(chatHandlerRequest);
