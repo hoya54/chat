@@ -40,7 +40,7 @@ public class ChatController {
     @MessageMapping("/api/chat/receive")
     public void chatHandler(ChatHandlerRequest chatHandlerRequest){
 
-        log.info("api/chat/recieve");
+        log.info("api/chat/receive");
 
         ChatHandlerResponse chatHandlerResponse = chatService.saveMessage(chatHandlerRequest);
 
