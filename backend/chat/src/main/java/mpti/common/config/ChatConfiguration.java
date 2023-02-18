@@ -17,6 +17,6 @@ public class ChatConfiguration extends AbstractWebSocketMessageBrokerConfigurer 
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry stompEndpointRegistry) {
-        stompEndpointRegistry.addEndpoint("/api/cjat").withSockJS();
+        stompEndpointRegistry.addEndpoint("/api/chat").withSockJS();
     }
 }
