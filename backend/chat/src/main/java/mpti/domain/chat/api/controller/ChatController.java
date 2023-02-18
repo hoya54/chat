@@ -1,6 +1,7 @@
 package mpti.domain.chat.api.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import mpti.domain.chat.api.request.ChatHandlerRequest;
 import mpti.domain.chat.api.response.ChatHandlerResponse;
 import mpti.domain.chat.api.response.GetChannelIdResponse;
@@ -19,6 +20,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/chat")
 @RequiredArgsConstructor
+@Slf4j
 public class ChatController {
 
     private final SimpMessagingTemplate simpMessagingTemplate;
@@ -37,6 +39,8 @@ public class ChatController {
 //    [Message] receive를 메시지를 받을 endpoint로 설정합니다.
     @MessageMapping("/api/chat/receive")
     public void chatHandler(ChatHandlerRequest chatHandlerRequest){
+
+        log.info("api/chat/recieve");
 
         ChatHandlerResponse chatHandlerResponse = chatService.saveMessage(chatHandlerRequest);
 
