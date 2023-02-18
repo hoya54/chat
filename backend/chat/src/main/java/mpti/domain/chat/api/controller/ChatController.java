@@ -25,6 +25,8 @@ public class ChatController {
 
     private final SimpMessagingTemplate simpMessagingTemplate;
 
+
+
     private final ChatService chatService;
 
 //    @MessageMapping("/chat/list")
